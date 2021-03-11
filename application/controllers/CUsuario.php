@@ -12,6 +12,14 @@ class CUsuario extends CI_Controller {
         $this->load->model("MEstado");
         $this->load->model("MUsuario");
 
+
+        if ($this->session->userdata('rol_user') == 2 ||
+                $this->session->userdata('rol_user') == 3) {
+            echo "<p><b>ACCESO DENEGADO.</b> Señor usuario, se encuentra intentando acceder"
+            . " a un sitio al cual no tiene permiso de acceso.</p>";
+            exit;
+        }
+
     }
 
 //controlador por defecto
