@@ -75,12 +75,12 @@
             <!-- /.form-group -->
 
             <div class="form-group">
-              <label>Nit:</label>
+              <label>Login:</label>
               <div class="input-group">
                 <div class="input-group-addon">
                   <i class="fa fa-laptop"></i>
                 </div>
-                <input type="text" name="nit" class="form-control" value="<?= $u->usuNit; ?>">
+                <input type="text" name="nit" class="form-control" value="<?= $u->usuLogin; ?>">
               </div>
             </div>
             <!-- /.form-group -->

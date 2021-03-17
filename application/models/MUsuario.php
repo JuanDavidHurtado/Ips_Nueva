@@ -13,9 +13,9 @@ class MUsuario extends CI_Model {
     $this->load->database();
   }
 
-  function obtenerUsuarioPorLogin($nit, $pwd){ 
+  function obtenerUsuarioPorLogin($login, $pwd){ 
 
-    $query = $this->db->where('usuNit',$nit);  
+    $query = $this->db->where('usuLogin',$login);  
     $query = $this->db->where('usuClave',$pwd);
     $query = $this->db->get('usuario');
     return $query->row();  
@@ -34,6 +34,7 @@ class MUsuario extends CI_Model {
           FROM usuario as u 
           LEFT JOIN rol as ro ON  u.rol_idRol=ro.idRol
           LEFT JOIN estado as est on est.idEstado= u.estado_idEstado
+          LEFT JOIN empresa as emp on emp.idEmpresa= u.empresa_idEmpresa
           WHERE u.rol_idRol  !=1");
 
         //Devolvemos el resultado de la consulta

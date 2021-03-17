@@ -1,10 +1,3 @@
-<!--
-*1. Admin permiso a todas las vistas
-*2.Validador permiso items Validación Rips
-*3.Auditor permiso Listar Cargas
-
--->
-
 <?php
 if (!$this->session->userdata('login')) {
   redirect(base_url());
@@ -312,7 +305,7 @@ if (!$this->session->userdata('login')) {
       <li class="header">NAVEGACIÓN PRINCIPAL</li>
       <li><a href="<?= site_url('CHome') ?>"><i class="fa fa-dashboard"></i> <span>Panel de Control</span></a></li>
       <?php if ($this->session->userdata('rol_user') == 1) { //Menu para Administrador (Si es 2 o 3 excluyo opcion usuario) ?>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Usuarios</span>
             <span class="pull-right-container">
@@ -324,8 +317,32 @@ if (!$this->session->userdata('login')) {
             <li><a href="<?= site_url('CUsuario/listar_usu') ?>"><i class="fa fa-circle-o"></i> Listar Todos</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Empresa</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="<?= site_url('CEmpresa') ?>"><i class="fa fa-circle-o"></i> Registrar Nuevo</a></li>
+            <li><a href="<?= site_url('CEmpresa/listar_emp') ?>"><i class="fa fa-circle-o"></i> Listar Todos</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Cups</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="<?= site_url('CCups') ?>"><i class="fa fa-circle-o"></i> Registrar Nuevo</a></li>
+            <li><a href="<?= site_url('CCups/lis_cups') ?>"><i class="fa fa-circle-o"></i> Listar Todos</a></li>
+          </ul>
+        </li>
       <?php } ?>
-      <li class="active treeview">
+      <li class="treeview">
         <a href="#">
           <i class="fa fa-dashboard"></i> <span>Validación Rips</span>
           <span class="pull-right-container">
@@ -335,10 +352,10 @@ if (!$this->session->userdata('login')) {
         <ul class="treeview-menu">
          <?php
          if ($this->session->userdata('rol_user') == 1 || $this->session->userdata('rol_user') == 2) {?>
-          <li class="active"><a href=""><i class="fa fa-circle-o"></i> Cargar Rips</a></li>
+          <li class="active"><a href="<?= site_url('CDocumento') ?>"><i class="fa fa-circle-o"></i> Cargar Documentos</a></li>
         <?php } ?>
         <?php if ($this->session->userdata('rol_user') == 1 || $this->session->userdata('rol_user') == 2 ||  $this->session->userdata('rol_user') == 3) { ?>
-          <li><a href=""><i class="fa fa-circle-o"></i> Listar Cargas</a></li>
+          <li><a href=""><i class="fa fa-circle-o"></i> Listar Documentos</a></li>
         <?php } ?>
       </ul>
     </li>

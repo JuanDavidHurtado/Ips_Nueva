@@ -47,7 +47,7 @@
 
     <form>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Nit" name="nit" required="">
+        <input type="text" class="form-control" placeholder="Login" name="log" required="">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

@@ -19,6 +19,7 @@
                 <th>Dirección</th>
                 <th>Rol</th>
                 <th>Estado</th>
+                <th>Empresa</th>
                 <th colspan="2">Opciones</th>
               </thead>
               <tbody>
@@ -48,31 +49,44 @@
                       <?= $u->estNombre; ?>
                     </td>
                     <td>
-                      <a class="btn btn-default" data-toggle="tooltip" title="Actualizar Usuario" href="<?= base_url("index.php/CUsuario/modRecuperar/$u->idUsuario") ?>"><span class="glyphicon glyphicon-pencil">Actualizar</span></a>
-                    </td>
-                    <td>
-                      <a class="btn btn-default" data-toggle="tooltip" title="Eliminar Usuario" href="<?= base_url("index.php/CUsuario/eliminar/$u->idUsuario") ?>"><span class="glyphicon glyphicon-trash"> Eliminar</span></a>
-                    </td>
 
-                    <?php
-                  }
-                  ?>
-                </tbody>
-              </table>
-            </div>
+                      <?php if ($u->empresa_idEmpresa != NULL){
 
+                       echo $u->empNombre;
+
+                     }else{
+
+                      echo "No pertenece a una empresa"; 
+
+                    }
+                    ?>
+                  </td>
+                  <td>
+                    <a class="btn btn-default" data-toggle="tooltip" title="Actualizar Usuario" href="<?= base_url("index.php/CUsuario/modRecuperar/$u->idUsuario") ?>"><span class="glyphicon glyphicon-pencil">Actualizar</span></a>
+                  </td>
+                  <td>
+                    <a class="btn btn-default" data-toggle="tooltip" title="Eliminar Usuario" href="<?= base_url("index.php/CUsuario/eliminar/$u->idUsuario") ?>"><span class="glyphicon glyphicon-trash"> Eliminar</span></a>
+                  </td>
+
+                  <?php
+                }
+                ?>
+              </tbody>
+            </table>
           </div>
-          <!-- /.box-body -->
+
         </div>
-        <!-- /.box -->
-
-
+        <!-- /.box-body -->
       </div>
-      <!-- /.box-body -->
+      <!-- /.box -->
+
+
     </div>
-    <!-- /.box -->
-
-    <!-- /.row -->
-  </section>
-
+    <!-- /.box-body -->
   </div>
+  <!-- /.box -->
+
+  <!-- /.row -->
+</section>
+
+</div>

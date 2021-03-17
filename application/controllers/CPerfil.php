@@ -72,7 +72,7 @@ class CPerfil extends CI_Controller {
 
     public function actualizar() {
 
-            $nit = $this->input->post('nit');
+            $login = $this->input->post('log');
             $nombre = $this->input->post('nom');
             $apellido = $this->input->post('ape');
             $clave = $this->input->post('pwd');
@@ -82,7 +82,7 @@ class CPerfil extends CI_Controller {
             $direccion = $this->input->post('dir');
 
             $usuario = array(
-                'usuNit' => $nit,
+                'usuLogin' => $login,
                 'usuNombre' => $nombre,
                 'usuApellido' => $apellido,
                 'usuClave' => $clave,

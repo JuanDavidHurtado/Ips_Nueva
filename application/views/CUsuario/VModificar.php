@@ -76,12 +76,12 @@
             <!-- /.form-group -->
 
             <div class="form-group">
-              <label>Nit:</label>
+              <label>Login:</label>
               <div class="input-group">
                 <div class="input-group-addon">
                   <i class="fa fa-laptop"></i>
                 </div>
-                <input type="text" name="nit" class="form-control" value="<?= $u->usuNit; ?>">
+                <input type="text" name="Log" class="form-control" value="<?= $u->usuLogin; ?>">
               </div>
             </div>
             <!-- /.form-group -->
@@ -117,7 +117,7 @@
                 <div class="input-group-addon">
                   <i class="fa fa-laptop"></i>
                 </div>
-                <select class="form-control" name="rol">
+                <select class="form-control" name="rol" required="">
 
                  <?php
                  foreach ($rol as $r) {
@@ -158,6 +158,33 @@
           </div>
           <!-- /.form-group -->
         </div>
+        <?php if ($u->empresa_idEmpresa != NULL): ?>
+          
+        <div class="col-md-12">
+            <div class="form-group">
+              <label>Empresa:</label>
+              <div class="input-group">
+                <div class="input-group-addon">
+                  <i class="fa fa-laptop"></i>
+                </div>
+                <select class="form-control" name="emp">
+
+                 <?php
+                 foreach ($empresa as $emp) {
+                  if ($u->empresa_idEmpresa == $emp->idEmpresa) {
+                    echo "<option selected='selected' value={$emp->idEmpresa}>{$emp->empNombre}</option>";
+                  } else {
+                    echo "<option value={$emp->idEmpresa}>{$emp->empNombre}</option>";
+                  }
+                }
+                ?>
+              </select>
+            </div>
+
+          </div>
+          <!-- /.form-group -->
+        </div>
+        <?php endif ?>
 
         <div class="col-md-12">
 
