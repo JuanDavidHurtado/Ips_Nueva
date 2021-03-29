@@ -63,119 +63,84 @@
 
         public function add_doc() {
 
-            /*$file_name = $_FILES['file_url']['name'];
+            $file_name = $_FILES['file_url']['name'];
             $file_tmp = $_FILES['file_url']['tmp_name'];
             $file_type = $_FILES['file_url']['type'];
 
-            $fp = fopen($file_tmp, 'r+b');
-            $binario = fread($fp, filesize($file_tmp));
-            fclose($fp);*/
+            $fpcero = fopen($file_tmp[0], 'r+b');
+            $binariocero = fread($fpcero, filesize($file_tmp[0]));
+            fclose($fpcero);
 
-            $file_tmp=$_FILES["file_url"]['name'];
-            
+            $fpuno = fopen($file_tmp[1], 'r+b');
+            $binariouno = fread($fpuno, filesize($file_tmp[1]));
+            fclose($fpuno);
 
+            $fpdos = fopen($file_tmp[2], 'r+b');
+            $binariodos = fread($fpdos, filesize($file_tmp[2]));
+            fclose($fpdos);
 
+            $fptres = fopen($file_tmp[3], 'r+b');
+            $binariotres = fread($fptres, filesize($file_tmp[3]));
+            fclose($fptres);
 
-               
-            echo $file_tmp[0];
-
-            echo "<br>";
-
-           // print_r($file_tmp[1]);
-
-
-
-
-
-
-                //print_r($_FILES["file_url"]['tmp_name']);
-
-                //Validamos que el archivo exista
-            /*    if($_FILES["file_url"]["name"][$key]) {
+            $fpcuatro = fopen($file_tmp[4], 'r+b');
+            $binariocuatro = fread($fpcuatro, filesize($file_tmp[4]));
+            fclose($fpcuatro);
 
 
-                     $file_name = $_FILES["file_url"]["name"][$key]; //Obtenemos el nombre original del archivo
-                     $file_tmp = $_FILES["file_url"]["tmp_name"][$key]; //Obtenemos un nombre temporal del archivo
-                     $file_type = $_FILES['file_url']['type'][$key];
-
-
-
-                     $fp = fopen($file_tmp, 'r+b');
-                     $binario = fread($fp, filesize($file_tmp));
-                     fclose($fp);
-
-
-                     $archivo = fopen($file_tmp,"rb");
-                     $cadena = fread($archivo, 23); // Leemos un determinado número de caracteres
-
-                     echo "".$cadena."";
-                     fclose($archivo);
-
-
-                 }*/
-
-
-
-
-
-                 /*    $documento_datos = array(
-                        'docArchivo' => $binario
-                   // 'docArcNombre' => $file_name,
-                   // 'docTipArchivo' => $file_type
-                    );
+            $documento = array(
+                'docac' => $binariocero,
+                'docaf' => $binariouno,
+                'docap' => $binariodos,
+                'docct' => $binariotres,
+                'docus' => $binariocuatro
+            );
             //Procedo a guardar la informacion
-                     $id_doc = $this->MDocumento->guardar($documento_datos);
+            $id_doc = $this->MDocumento->guardar($documento);
 
-                     $usu_doc = array(
-                        'usuario_idUsuario' => $this->session->userdata('id_user'),
-                        'documento_idDocumento' => $id_doc
-                    );
+            $filas= fopen($file_tmp[1], 'r');
+            $data  = explode(",",fgets($filas));
+            $num_lineas = 1;            
 
-                    $this->MDocumento->guardar_usu_doc($usu_doc);*/
+            while (!feof($filas)){
 
+                if ($linea = fgets($filas)){
+
+                    $num_lineas++;
+                }
+            }
+
+            $filas_af= fopen($file_tmp[1], 'r');
+            $total=0;
+            while (!feof($filas_af)) {
+
+                $test= explode(",",fgets($filas_af));
+                $var_a_int=(int)$test[16];
+                $total = $var_a_int+$total;
                 
+                if (empty($test) == true) {
+                 break;      
+             }
+
+         }
+         fclose($filas_af);
+
+         $usu_doc = array(
+            'usuario_idUsuario' => $this->session->userdata('id_user'),
+            'documento_idDocumento' => $id_doc,
+            'usu_doc_Fecha' => date("Y-m-d", time()),
+            'usu_doc_Fec_Periodo' => $data[6],
+            'usu_doc_Factura' => $num_lineas,
+            'usu_doc_Valor' =>  $total
+        );
+
+         $this->MDocumento->guardar_usu_doc($usu_doc);
 
 
+         redirect(base_url("index.php/CDocumento/index_/add"));
+
+     }
+ }
 
 
-            /*Validacion
-            $archivo = fopen($file_tmp,"rb");
-            $prueba = "1. Cree una aplicación ";
-            $cadena = fread($archivo, 23); // Leemos un determinado número de caracteres
-            fclose($archivo);
-
-            end validacion */
-
-            /*echo "<p>".$cadena1."</p>";
-            echo "<br>";
-            echo "<p>".$prueba."</p>";*/
-
-            /* if ($cadena==$prueba) {*/
-                //Procedo a insertar el documento
-               /* $documento_datos = array(
-                    'docArchivo' => $binario
-                   // 'docArcNombre' => $file_name,
-                   // 'docTipArchivo' => $file_type
-                );
-            //Procedo a guardar la informacion
-                $id_doc = $this->MDocumento->guardar($documento_datos);
-
-                $usu_doc = array(
-                    'usuario_idUsuario' => $this->session->userdata('id_user'),
-                    'documento_idDocumento' => $id_doc
-                );
-
-                $this->MDocumento->guardar_usu_doc($usu_doc);
-                //redirect(base_url("index.php/CDocumento/index_/add"));*/
-
-           /* }else{
-
-                echo "Los archivos no coinciden";
-
-            }*/
-
-        }
-    }
-
-
-    ?>
+ ?>

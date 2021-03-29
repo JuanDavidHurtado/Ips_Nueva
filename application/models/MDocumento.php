@@ -13,8 +13,8 @@ class MDocumento extends CI_Model {
         $this->load->database();
     }
 
-    public function guardar($datos) {
-        $consulta = $this->db->insert('documento', $datos);
+    public function guardar($documento) {
+        $consulta = $this->db->insert('documento', $documento);
 
         if ($consulta) { //Si estuvo correcta la insercion
             //retorno el id generado
