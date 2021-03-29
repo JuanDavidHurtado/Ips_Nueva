@@ -1,9 +1,8 @@
-<!--
-*1. Admin permiso a todas las vistas
-*2.Validador permiso items Validación Rips
-*3.Auditor permiso Listar Cargas
-
- -->
+<?php
+if (!$this->session->userdata('login')) {
+  redirect(base_url());
+}
+?>
 
 <div class="wrapper">
 
@@ -164,148 +163,149 @@
                       </h3>
                       <div class="progress xs">
                         <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
+                        aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                        <span class="sr-only">20% Complete</span>
                       </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Create a nice theme
-                        <small class="pull-right">40%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">40% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Some task I need to do
-                        <small class="pull-right">60%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Make beautiful transitions
-                        <small class="pull-right">80%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar"
-                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">80% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                </ul>
+                    </div>
+                  </a>
+                </li>
+                <!-- end task item -->
+                <li><!-- Task item -->
+                  <a href="#">
+                    <h3>
+                      Create a nice theme
+                      <small class="pull-right">40%</small>
+                    </h3>
+                    <div class="progress xs">
+                      <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar"
+                      aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                      <span class="sr-only">40% Complete</span>
+                    </div>
+                  </div>
+                </a>
               </li>
-              <li class="footer">
-                <a href="#">View all tasks</a>
-              </li>
-            </ul>
-          </li>
-          <!-- User Account: style can be found in dropdown.less -->
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"><?= $this->session->userdata('nom_user'); ?></span>
+              <!-- end task item -->
+              <li><!-- Task item -->
+                <a href="#">
+                  <h3>
+                    Some task I need to do
+                    <small class="pull-right">60%</small>
+                  </h3>
+                  <div class="progress xs">
+                    <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar"
+                    aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                    <span class="sr-only">60% Complete</span>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <!-- end task item -->
+            <li><!-- Task item -->
+              <a href="#">
+                <h3>
+                  Make beautiful transitions
+                  <small class="pull-right">80%</small>
+                </h3>
+                <div class="progress xs">
+                  <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar"
+                  aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                  <span class="sr-only">80% Complete</span>
+                </div>
+              </div>
             </a>
-            <ul class="dropdown-menu">
-              <!-- User image -->
-              <li class="user-header">
-                <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-
-                <p>
-                  Alexander Pierce - Web Develop
-                  <small>Member since Nov. 2012</small>
-                </p>
-              </li>
-              <!-- Menu Body -->
-              <li class="user-body">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
-              <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
-                </div>
-                <div class="pull-right">
-                  <a href="<?= site_url('CLogin/logout') ?>" class="btn btn-default btn-flat">Cerrar Sesión</a>
-                </div>
-              </li>
-            </ul>
           </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
+          <!-- end task item -->
         </ul>
-      </div>
-    </nav>
-  </header>
+      </li>
+      <li class="footer">
+        <a href="#">View all tasks</a>
+      </li>
+    </ul>
+  </li>
+  <!-- User Account: style can be found in dropdown.less -->
+  <li class="dropdown user user-menu">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+      <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+      <span class="hidden-xs"><?= $this->session->userdata('nom_user'); ?></span>
+    </a>
+    <ul class="dropdown-menu">
+      <!-- User image -->
+      <li class="user-header">
+        <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-  <!--..................Fin encabezado horizontal,,,,,,,,,,,,,,,,,,,,,,,,, -->
+        <p>
+          Alexander Pierce - Web Develop
+          <small>Member since Nov. 2012</small>
+        </p>
+      </li>
+      <!-- Menu Body -->
+      <li class="user-body">
+        <div class="row">
+          <div class="col-xs-4 text-center">
+            <a href="#">Followers</a>
+          </div>
+          <div class="col-xs-4 text-center">
+            <a href="#">Sales</a>
+          </div>
+          <div class="col-xs-4 text-center">
+            <a href="#">Friends</a>
+          </div>
+        </div>
+        <!-- /.row -->
+      </li>
+      <!-- Menu Footer-->
+      <li class="user-footer">
+        <div class="pull-left">
+          <a href="<?= site_url('CPerfil') ?>" class="btn btn-default btn-flat">Perfil</a>
+        </div>
+        <div class="pull-right">
+          <a href="<?= site_url('CLogin/logout') ?>" class="btn btn-default btn-flat">Cerrar Sesión</a>
+        </div>
+      </li>
+    </ul>
+  </li>
+  <!-- Control Sidebar Toggle Button -->
+  <li>
+    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+  </li>
+</ul>
+</div>
+</nav>
+</header>
 
-  <!-- ...............................Inicio Menu vertical........................... -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->
-      <div class="user-panel">
-        <div class="pull-left image">
-          <img src="<?= base_url('assets/img/user2-160x160.jpg'); ?>" class="img-circle" alt="User Image">
-        </div>
-        <div class="pull-left info">
-          <p>Alexander Pierce</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-        </div>
+<!--..................Fin encabezado horizontal,,,,,,,,,,,,,,,,,,,,,,,,, -->
+
+<!-- ...............................Inicio Menu vertical........................... -->
+<aside class="main-sidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar">
+    <!-- Sidebar user panel -->
+    <div class="user-panel">
+      <div class="pull-left image">
+        <img src="<?= base_url('assets/img/user2-160x160.jpg'); ?>" class="img-circle" alt="User Image">
       </div>
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">NAVEGACIÓN PRINCIPAL</li>
-        <li><a href="<?= site_url('CHome') ?>"><i class="fa fa-dashboard"></i> <span>Panel de Control</span></a></li>
-        <li class="active treeview">
+      <div class="pull-left info">
+        <p>Alexander Pierce</p>
+        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+      </div>
+    </div>
+    <!-- search form -->
+    <form action="#" method="get" class="sidebar-form">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Search...">
+        <span class="input-group-btn">
+          <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+    </form>
+    <!-- /.search form -->
+    <!-- sidebar menu: : style can be found in sidebar.less -->
+    <ul class="sidebar-menu" data-widget="tree">
+      <li class="header">NAVEGACIÓN PRINCIPAL</li>
+      <li><a href="<?= site_url('CHome') ?>"><i class="fa fa-dashboard"></i> <span>Panel de Control</span></a></li>
+      <?php if ($this->session->userdata('rol_user') == 1) { //Menu para Administrador (Si es 2 o 3 excluyo opcion usuario) ?>
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Usuarios</span>
             <span class="pull-right-container">
@@ -317,18 +317,48 @@
             <li><a href="<?= site_url('CUsuario/listar_usu') ?>"><i class="fa fa-circle-o"></i> Listar Todos</a></li>
           </ul>
         </li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Validación Rips</span>
+            <i class="fa fa-dashboard"></i> <span>Empresa</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href=""><i class="fa fa-circle-o"></i> Cargar Rips</a></li>
-            <li><a href=""><i class="fa fa-circle-o"></i> Listar Cargas</a></li>
+            <li class="active"><a href="<?= site_url('CEmpresa') ?>"><i class="fa fa-circle-o"></i> Registrar Nuevo</a></li>
+            <li><a href="<?= site_url('CEmpresa/listar_emp') ?>"><i class="fa fa-circle-o"></i> Listar Todos</a></li>
           </ul>
         </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Cups</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="<?= site_url('CCups') ?>"><i class="fa fa-circle-o"></i> Registrar Nuevo</a></li>
+            <li><a href="<?= site_url('CCups/lis_cups') ?>"><i class="fa fa-circle-o"></i> Listar Todos</a></li>
+          </ul>
+        </li>
+      <?php } ?>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span>Validación Rips</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+         <?php
+         if ($this->session->userdata('rol_user') == 1 || $this->session->userdata('rol_user') == 2) {?>
+          <li class="active"><a href="<?= site_url('CDocumento') ?>"><i class="fa fa-circle-o"></i> Cargar Documentos</a></li>
+        <?php } ?>
+        <?php if ($this->session->userdata('rol_user') == 1 || $this->session->userdata('rol_user') == 2 ||  $this->session->userdata('rol_user') == 3) { ?>
+          <li><a href=""><i class="fa fa-circle-o"></i> Listar Documentos</a></li>
+        <?php } ?>
+      </ul>
+    </li>
         <!--
         <li class="treeview">
           <a href="#">
@@ -488,11 +518,11 @@
         <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>-->
       </ul>
     </section>
-</aside>
+  </aside>
 
- <!-- /......................Fin menu vertical......................... -->
+  <!-- /......................Fin menu vertical......................... -->
 
- <!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -505,4 +535,3 @@
         <li class="active">Tablero</li>
       </ol>
     </section>
-          

@@ -38,11 +38,11 @@ class CLogin extends CI_Controller {
         public function login()
     {
 
-            $nit = $this->input->post('nit');
+            $login = $this->input->post('log');
             $pwd = $this->input->post('pwd');
             //echo $login.' - '.$pwd; 
             
-            $fila = $this->MUsuario->obtenerUsuarioPorLogin($nit,$pwd);
+            $fila = $this->MUsuario->obtenerUsuarioPorLogin($login,$pwd);
 
 
             //echo print_r($fila[0]);

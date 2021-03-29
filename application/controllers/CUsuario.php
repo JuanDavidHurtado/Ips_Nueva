@@ -11,16 +11,25 @@ class CUsuario extends CI_Controller {
         $this->load->model("MRol");
         $this->load->model("MEstado");
         $this->load->model("MUsuario");
+        $this->load->model("MEmpresa");
 
+
+        if ($this->session->userdata('rol_user') == 2 ||
+            $this->session->userdata('rol_user') == 3) {
+            echo "<p><b>ACCESO DENEGADO.</b> Señor usuario, se encuentra intentando acceder"
+        . " a un sitio al cual no tiene permiso de acceso.</p>";
+        exit;
     }
 
+}
+
 //controlador por defecto
-    public function index() {
+public function index() {
 
 
         $data['title'] = 'IPS NUEVA | AGREGAR'; //Titulo de la pagina
 
-    
+
         $this->load->view("CPlantilla/VHead",$data);
 
        //Carga de head 
@@ -33,6 +42,7 @@ class CUsuario extends CI_Controller {
 
         $vector["rol"] = $this->MRol->ver();
         $vector["estado"] = $this->MEstado->ver();
+        $vector["empresa"] = $this->MEmpresa->ver_emp_estado();
 
         $this->load->view("CUsuario/VForm_Usu.php", $vector);
 
@@ -47,22 +57,19 @@ class CUsuario extends CI_Controller {
         if ($tipo == 'add') { //Si fue add correcto
             $data['tipmsg'] = 'success';  //Tipo de mensaje error, warning o success
             $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Ok! </strong>Cuenta de Usuario añadido correctamente.'; //Mensaje a enviar 
-        } else if ($tipo == 'update') { //Si fue update correcto 
-            $data['tipmsg'] = 'success';  //Tipo de mensaje error, warning o success
-            $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Ok!</strong> Cuenta de Usuario actualizado correctamente.'; //Mensaje a enviar 
-        }
-
+        } 
 
         $data['title'] = 'IPS NUEVA | AGREGAR'; //Titulo de la pagina
 
-    
+
         $this->load->view("CPlantilla/VHead",$data);
         
         $this->load->view("CPlantilla/VBarraMenu");
-         $this->load->view("CPlantilla/VHeader",$data);
+        $this->load->view("CPlantilla/VHeader",$data);
 
         $vector["rol"] = $this->MRol->ver();
         $vector["estado"] = $this->MEstado->ver();
+        $vector["empresa"] = $this->MEmpresa->ver_emp_estado();
 
         $this->load->view("CUsuario/VForm_Usu.php", $vector);
 
@@ -72,35 +79,50 @@ class CUsuario extends CI_Controller {
 
     public function guardar_usuario () {
 
-            $nit = $this->input->post('nit');
-            $nombre = $this->input->post('nom');
-            $apellido = $this->input->post('ape');
-            $clave = $this->input->post('pwd');
-            $telefono = $this->input->post('tel');
-            $telefono1 = $this->input->post('tel1');
-            $correo = $this->input->post('cor');
-            $direccion = $this->input->post('dir');
-            $rol = $this->input->post('rol');
-            $estado = $this->input->post('est');
+        $login = $this->input->post('log');
+        $nombre = $this->input->post('nom');
+        $apellido = $this->input->post('ape');
+        $clave = $this->input->post('pwd');
+        $telefono = $this->input->post('tel');
+        $telefono1 = $this->input->post('tel1');
+        $correo = $this->input->post('cor');
+        $direccion = $this->input->post('dir');
+        $rol = $this->input->post('rol');
+        $estado = $this->input->post('est');
+        $id_emp = $this->input->post('emp'); 
 
-            $usuario = array(
-                'usuNit' => $nit,
-                'usuNombre' => $nombre,
-                'usuApellido' => $apellido,
-                'usuClave' => $clave,
-                'usuTelefono' => $telefono,
-                'usuTelefono1' => $telefono1,
-                'usuCorreo' => $correo,
-                'usuDireccion' => $direccion,
-                'rol_idRol' => $rol,
-                'estado_idEstado' => $estado
-            );
+        $var = $this->input->post('emp');
+        
+        if($var == ''){
 
-            $this->MUsuario->guardar($usuario);
+            $id_emp = NULL;
+
+        }else{
+
+            $id_emp = $this->input->post('emp');
+        }
+
+
+
+        $usuario = array(
+            'usuLogin' => $login,
+            'usuNombre' => $nombre,
+            'usuApellido' => $apellido,
+            'usuClave' => $clave,
+            'usuTelefono' => $telefono,
+            'usuTelefono1' => $telefono1,
+            'usuCorreo' => $correo,
+            'usuDireccion' => $direccion,
+            'rol_idRol' => $rol,
+            'estado_idEstado' => $estado,
+            'empresa_idEmpresa' => $id_emp
+        );
+
+        $this->MUsuario->guardar($usuario);
             //// //redirecciono la pagina a la url por defecto
-            redirect(base_url("index.php/CUsuario/index_/add"));
+        redirect(base_url("index.php/CUsuario/index_/add"));
 
- 
+
     }
     public function listar_usu() {
 
@@ -108,7 +130,7 @@ class CUsuario extends CI_Controller {
 
         $data['title'] = 'IPS NUEVA | LISTAR USUARIO'; //Titulo de la pagina
 
-    
+
         $this->load->view("CPlantilla/VHead",$data);
         
         $this->load->view("CPlantilla/VBarraMenu");
@@ -137,7 +159,7 @@ class CUsuario extends CI_Controller {
 
         $data['title'] = 'IPS NUEVA | LISTAR USUARIO'; //Titulo de la pagina
 
-    
+
         $this->load->view("CPlantilla/VHead",$data);
         
         $this->load->view("CPlantilla/VBarraMenu");
@@ -166,6 +188,7 @@ class CUsuario extends CI_Controller {
         $param["usuario"] = $this->MUsuario->recuperardatos($idUsuario);
         $param["rol"] = $this->MRol->ver();
         $param["estado"] = $this->MEstado->ver();
+        $param["empresa"] = $this->MEmpresa->ver_emp_estado();
 
         $this->load->view("CUsuario/VModificar.php", $param);
 
@@ -175,7 +198,7 @@ class CUsuario extends CI_Controller {
     public function Editar() {
 
         $id_usu = $this->input->post('id');
-        $nit = $this->input->post('nit');
+        $login = $this->input->post('log');
         $nombre = $this->input->post('nom');
         $apellido = $this->input->post('ape');
         $clave = $this->input->post('pwd');
@@ -185,19 +208,30 @@ class CUsuario extends CI_Controller {
         $direccion = $this->input->post('dir');
         $rol = $this->input->post('rol');
         $estado = $this->input->post('est');
+        $var = $this->input->post('emp');
+        
+        if($var == ''){
+
+            $id_emp = NULL;
+
+        }else{
+
+            $id_emp = $this->input->post('emp');
+        }
 
         $usuario = array(
-                'usuNit' => $nit,
-                'usuNombre' => $nombre,
-                'usuApellido' => $apellido,
-                'usuClave' => $clave,
-                'usuTelefono' => $telefono,
-                'usuTelefono1' => $telefono1,
-                'usuCorreo' => $correo,
-                'usuDireccion' => $direccion,
-                'rol_idRol' => $rol,
-                'estado_idEstado' => $estado
-            );
+            'usuLogin' => $login,
+            'usuNombre' => $nombre,
+            'usuApellido' => $apellido,
+            'usuClave' => $clave,
+            'usuTelefono' => $telefono,
+            'usuTelefono1' => $telefono1,
+            'usuCorreo' => $correo,
+            'usuDireccion' => $direccion,
+            'rol_idRol' => $rol,
+            'estado_idEstado' => $estado,
+            'empresa_idEmpresa' => $id_emp
+        );
 
         $this->MUsuario->actualizardatos($usuario, $id_usu);
 

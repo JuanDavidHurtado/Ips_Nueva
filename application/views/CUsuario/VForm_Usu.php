@@ -2,7 +2,7 @@
 
   <div class="box box-danger">
     <div class="box-header with-border">
-      <h3 class="box-title">Registro Usuario</h3>
+      <h3 class="box-title">Registro Usuario <small style="color: #C6462B;">(campo requerido *)</small></h3>
 
       <div class="box-tools pull-right">
         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -15,7 +15,7 @@
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label>Nombres:</label>
+            <label>Nombres <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-laptop"></i>
@@ -25,7 +25,7 @@
           </div>
           <!-- /.form-group -->
           <div class="form-group">
-            <label>Teléfono</label>
+            <label>Teléfono <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-laptop"></i>
@@ -38,7 +38,7 @@
         <!-- /.col -->
         <div class="col-md-6">
           <div class="form-group">
-            <label>Apellidos:</label>
+            <label>Apellidos <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-laptop"></i>
@@ -49,12 +49,12 @@
           </div>
           <!-- /.form-group -->
           <div class="form-group">
-            <label>Teléfono Fijo:</label>
+            <label>Teléfono Fijo</label>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-laptop"></i>
               </div>
-              <input type="text" required="" name="tel1" class="form-control" placeholder="Teléfono Fijo">
+              <input type="text" name="tel1" class="form-control" placeholder="Teléfono Fijo">
             </div>
           </div>
           <!-- /.form-group -->
@@ -62,7 +62,7 @@
 
         <div class="col-md-6">
           <div class="form-group">
-            <label>Correo Eléctronico:</label>
+            <label>Correo Eléctronico <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-laptop"></i>
@@ -74,12 +74,12 @@
           <!-- /.form-group -->
           
           <div class="form-group">
-            <label>Nit:</label>
+            <label>Login <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-laptop"></i>
               </div>
-              <input type="text" required="" name="nit" class="form-control" placeholder="Nit">
+              <input type="text" required="" name="log" class="form-control" placeholder="Login">
             </div>
           </div>
           <!-- /.form-group -->
@@ -87,7 +87,7 @@
 
         <div class="col-md-6">
           <div class="form-group">
-            <label>Dirección:</label>
+            <label>Dirección <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-laptop"></i>
@@ -98,7 +98,7 @@
           </div>
           <!-- /.form-group -->
           <div class="form-group">
-            <label>Contraseña:</label>
+            <label>Contraseña <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-laptop"></i>
@@ -108,9 +108,9 @@
           </div>
           <!-- /.form-group -->
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="form-group">
-            <label>Rol:</label>
+            <label>Rol <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-laptop"></i>
@@ -129,9 +129,9 @@
           <!-- /.form-group -->
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-4">
           <div class="form-group">
-            <label>Estado:</label>
+            <label>Estado <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
                 <i class="fa fa-laptop"></i>
@@ -141,6 +141,26 @@
                                 <?php
                                 foreach ($estado as $e) {
                                     echo "<option value={$e->idEstado}>{$e->estNombre}</option>";
+                                }
+                                ?> 
+              </select>
+            </div>
+
+          </div>
+          <!-- /.form-group -->
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label>Empresa</label>
+            <div class="input-group">
+              <div class="input-group-addon">
+                <i class="fa fa-laptop"></i>
+              </div>
+             <select class="form-control" name="emp">
+                                <option value="">---Seleccione Opción---</option>
+                                <?php
+                                foreach ($empresa as $em) {
+                                    echo "<option value={$em->idEmpresa}>{$em->empNombre}</option>";
                                 }
                                 ?> 
               </select>
