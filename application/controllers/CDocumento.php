@@ -37,9 +37,19 @@
         public function index_($tipo) {
 
 
-            if ($tipo == 'add') { //Si fue add correcto
+            if($tipo == 'add') { //Si fue add correcto
                 $data['tipmsg'] = 'success';  //Tipo de mensaje error, warning o success
                 $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Ok! </strong>Documento se añadido correctamente.'; //Mensaje a enviar 
+            }elseif($tipo == 'ct_nombre_arc') {
+
+                $data['tipmsg'] = 'danger';  //Tipo de mensaje error, warning o success
+                $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Error! </strong>Archivo CT incorrecto los nombres de los archivos (AF, US, AC y AP) no coinciden con los del docmento CT.'; //Mensaje a enviar 
+               
+            }elseif($tipo == 'ct_linea_arc') {
+
+                $data['tipmsg'] = 'danger';  //Tipo de mensaje error, warning o success
+                $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Error! </strong>Archivo CT incorrecto la cantidad de lineas de los archivos (AF, US, AC y AP) no coinciden con los del docmento CT.'; //Mensaje a enviar 
+               
             }
 
             $data['title'] = 'IPS NUEVA | CARGAR DOCUMENTOS'; //Titulo de la pagina
@@ -87,8 +97,60 @@
             $binariocuatro = fread($fpcuatro, filesize($file_tmp[4]));
             fclose($fpcuatro);
 
+            //capturo el nombre de archivo
 
-            $documento = array(
+            $name = pathinfo($file_name[0], PATHINFO_FILENAME);
+            $name1 = pathinfo($file_name[1], PATHINFO_FILENAME);
+            $name2 = pathinfo($file_name[2], PATHINFO_FILENAME);
+            $name4 = pathinfo($file_name[4], PATHINFO_FILENAME);
+
+            //Capturo la cantidad de filas por archivo
+
+            $linea= count(file($file_tmp[0]));
+            $linea1= count(file($file_tmp[1]));
+            $linea2= count(file($file_tmp[2]));
+            $linea4= count(file($file_tmp[4]));
+
+            //creo el array de nombre de doc y nmeros de lineas 
+
+            $nom_archivos = array($name, $name1, $name2, $name4);
+
+            $cant_lineas = array($linea, $linea1, $linea2, $linea4);
+
+            $filas_ct= fopen($file_tmp[3], 'r');
+
+
+            while(!feof($filas_ct))
+            {
+                $valores=explode(",",fgets($filas_ct));
+
+                $indice = (isset($valores[2])? $valores[2] : '');
+
+                //$cant_lin_cargadas = (isset($valores[3])? $valores[3] : '');
+                $cant_lin_cargadas=(int)$valores[3];
+                
+                $dos = array($indice);
+                $arr_lineas = array($cant_lin_cargadas);
+
+                $resul_nom = array_diff($dos, $nom_archivos);
+
+                $resul_lin = array_diff($arr_lineas, $cant_lineas);
+
+                if (!$resul_nom == array()){
+                   
+                  redirect(base_url("index.php/CDocumento/index_/ct_nombre_arc"));
+
+                }elseif (!$resul_lin == array()) {
+
+                  redirect(base_url("index.php/CDocumento/index_/ct_linea_arc"));
+                    
+                }
+              
+            }
+            //echo "<br>";
+            fclose($filas_ct);
+
+           $documento = array(
                 'docac' => $binariocero,
                 'docaf' => $binariouno,
                 'docap' => $binariodos,
@@ -99,16 +161,9 @@
             $id_doc = $this->MDocumento->guardar($documento);
 
             $filas= fopen($file_tmp[1], 'r');
+            
             $data  = explode(",",fgets($filas));
-            $num_lineas = 1;            
-
-            while (!feof($filas)){
-
-                if ($linea = fgets($filas)){
-
-                    $num_lineas++;
-                }
-            }
+            $num_lineas= count(file($file_tmp[1]));
 
             $filas_af= fopen($file_tmp[1], 'r');
             $total=0;
@@ -134,13 +189,13 @@
             'usu_doc_Valor' =>  $total
         );
 
-         $this->MDocumento->guardar_usu_doc($usu_doc);
+        $this->MDocumento->guardar_usu_doc($usu_doc);
 
 
-         redirect(base_url("index.php/CDocumento/index_/add"));
+        redirect(base_url("index.php/CDocumento/index_/add"));
 
-     }
- }
+    }
+}
 
 
- ?>
+?>
