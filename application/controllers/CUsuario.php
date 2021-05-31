@@ -55,7 +55,7 @@ public function index() {
 
 
         if ($tipo == 'add') { //Si fue add correcto
-            $data['tipmsg'] = 'success';  //Tipo de mensaje error, warning o success
+            $data['tipmsg'] = 'info';  //Tipo de mensaje error, warning o success
             $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Ok! </strong>Cuenta de Usuario añadido correctamente.'; //Mensaje a enviar 
         } 
 
@@ -148,10 +148,10 @@ public function index() {
 
 
          if ($tipo == 'delete') { //Si fue add correcto
-            $data['tipmsg'] = 'success';  //Tipo de mensaje error, warning o success
+            $data['tipmsg'] = 'danger';  //Tipo de mensaje error, warning o success
             $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Ok! </strong>Cuenta de Usuario paso a un estado de inhabilatado para ingresar al sistema'; //Mensaje a enviar 
         } else if ($tipo == 'update') { //Si fue update correcto 
-            $data['tipmsg'] = 'success';  //Tipo de mensaje error, warning o success
+            $data['tipmsg'] = 'info';  //Tipo de mensaje error, warning o success
             $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Ok!</strong> Cuenta de Usuario actualizado correctamente.'; //Mensaje a enviar 
         }
 

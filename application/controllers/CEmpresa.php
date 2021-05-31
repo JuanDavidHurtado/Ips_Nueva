@@ -47,7 +47,7 @@ class CEmpresa extends CI_Controller {
 
 
         if ($tipo == 'add') { //Si fue add correcto
-            $data['tipmsg'] = 'success';  //Tipo de mensaje error, warning o success
+            $data['tipmsg'] = 'info';  //Tipo de mensaje error, warning o success
             $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Ok! </strong>Entidad se guardo correctamente.'; //Mensaje a enviar 
         } 
 
@@ -93,7 +93,7 @@ class CEmpresa extends CI_Controller {
 
 
 
-        $data['title'] = 'IPS NUEVA | LISTAR EMPRESAS'; //Titulo de la pagina
+        $data['title'] = 'IPS NUEVA | LISTAR ENTIDAD'; //Titulo de la pagina
 
     
         $this->load->view("CPlantilla/VHead",$data);
@@ -155,7 +155,7 @@ class CEmpresa extends CI_Controller {
 
 
         if ($tipo == 'update') { //Si fue update correcto 
-            $data['tipmsg'] = 'success';  //Tipo de mensaje error, warning o success
+            $data['tipmsg'] = 'info';  //Tipo de mensaje error, warning o success
             $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Ok!</strong> Entidad se actualizado correctamente.'; //Mensaje a enviar 
         }
 

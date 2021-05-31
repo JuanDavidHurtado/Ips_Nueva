@@ -2,7 +2,7 @@
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
-      <div class="box">
+      <div class="box box-primary">
         <div class="box-header">
           <h3 class="box-title">Lista Usuarios</h3>
         </div>
@@ -19,7 +19,7 @@
                 <th>Dirección</th>
                 <th>Rol</th>
                 <th>Estado</th>
-                <th>Empresa</th>
+                <th>Entidad</th>
                 <th colspan="2">Opciones</th>
               </thead>
               <tbody>
@@ -62,10 +62,10 @@
                     ?>
                   </td>
                   <td>
-                    <a class="btn btn-default" data-toggle="tooltip" title="Actualizar Usuario" href="<?= base_url("index.php/CUsuario/modRecuperar/$u->idUsuario") ?>"><span class="glyphicon glyphicon-pencil">Actualizar</span></a>
+                    <a data-toggle="tooltip" title="Actualizar Usuario" href="<?= base_url("index.php/CUsuario/modRecuperar/$u->idUsuario") ?>" class="btn btn-social btn-instagram"><i class="fa fa-edit"></i> Actualizar</a>
                   </td>
                   <td>
-                    <a class="btn btn-default" data-toggle="tooltip" title="Eliminar Usuario" href="<?= base_url("index.php/CUsuario/eliminar/$u->idUsuario") ?>"><span class="glyphicon glyphicon-trash"> Eliminar</span></a>
+                    <a data-toggle="tooltip" title="Eliminar Usuario" href="<?= base_url("index.php/CUsuario/eliminar/$u->idUsuario") ?>" class="btn btn-social btn-google"><i class="fa fa-trash-o"></i> Eliminar</a> 
                   </td>
 
                   <?php

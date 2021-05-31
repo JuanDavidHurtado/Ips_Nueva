@@ -15,9 +15,11 @@ class MUsuario extends CI_Model {
 
   function obtenerUsuarioPorLogin($login, $pwd){ 
 
+    
     $query = $this->db->where('usuLogin',$login);  
     $query = $this->db->where('usuClave',$pwd);
     $query = $this->db->get('usuario');
+    
     return $query->row();  
   } 
 

@@ -20,14 +20,14 @@ class CPerfil extends CI_Controller {
 
         $data['title'] = 'IPS NUEVA | EDITAR PERFIL'; //Titulo de la pagina
 
-    
         $this->load->view("CPlantilla/VHead",$data);
 
        //Carga de head 
-        $this->load->view("CPlantilla/VHeader");
+        $this->load->view("CPlantilla/VHead");
         
         //Carga de menu
         $this->load->view("CPlantilla/VBarraMenu");
+        
 
         //CARGA CONTENIDO PRINCIPAL
 
@@ -44,7 +44,7 @@ class CPerfil extends CI_Controller {
         //Carga del header de la plantilla
         //Datos para estructurar la plantilla
         if ($tipo == 'update') { //Si fue add correcto
-            $data['tipmsg'] = 'success';  //Tipo de mensaje error, warning o success
+            $data['tipmsg'] = 'info';  //Tipo de mensaje error, warning o success
             $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Ok!</strong>Tu perfil se ha actualizado correctamente.'; //Mensaje a enviar 
         }
 

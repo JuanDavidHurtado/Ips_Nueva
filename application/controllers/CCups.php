@@ -51,7 +51,7 @@ class CCups extends CI_Controller {
 
 
         if ($tipo == 'add') { //Si fue add correcto
-            $data['tipmsg'] = 'success';  //Tipo de mensaje error, warning o success
+            $data['tipmsg'] = 'info';  //Tipo de mensaje error, warning o success
             $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Ok! </strong>Cups se guardo correctamente.'; //Mensaje a enviar 
         } 
 
@@ -158,7 +158,7 @@ class CCups extends CI_Controller {
 
 
         if ($tipo == 'update') { //Si fue update correcto 
-            $data['tipmsg'] = 'success';  //Tipo de mensaje error, warning o success
+            $data['tipmsg'] = 'info';  //Tipo de mensaje error, warning o success
             $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Ok!</strong> Cups se actualizo correctamente.'; //Mensaje a enviar 
         }
 

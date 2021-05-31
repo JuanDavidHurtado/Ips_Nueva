@@ -2,9 +2,9 @@
 <section class="content">
   <div class="row">
     <div class="col-xs-12">
-      <div class="box">
+      <div class="box box-primary">
         <div class="box-header">
-          <h3 class="box-title">Lista Usuarios</h3>
+          <h3 class="box-title">Lista Entidad</h3>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -40,8 +40,8 @@
                       <?= $e->empEstado; ?>
                     </td>
                     <td>
-                      <a class="btn btn-default" data-toggle="tooltip" title="Actualizar Empresa" href="<?= base_url("index.php/CEmpresa/modRecuperar/$e->idEmpresa") ?>"><span class="glyphicon glyphicon-pencil">Actualizar</span></a>
-                    </td>
+                    <a data-toggle="tooltip" title="Actualizar Empresa" href="<?= base_url("index.php/CEmpresa/modRecuperar/$e->idEmpresa") ?>" class="btn btn-social btn-instagram"><i class="fa fa-edit"></i> Actualizar</a>
+                  </td>
                     <?php
                   }
                   ?>
