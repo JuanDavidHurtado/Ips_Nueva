@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>IPS NUEVA | INICIO SESIÓN</title>
+  <link rel="shortcut icon" href="<?= base_url('assets/img/favicon.ico') ?>" /> 
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -31,23 +32,22 @@
 <body class="hold-transition login-page">
 <?php echo form_open_multipart('CLogin/login'); ?>
 <div class="login-box">
-  <div class="login-logo">
-    <a><b>Admin</b>LTE</a>
-  </div>
+ 
   <?php if (isset($msg)) { ?>
                         <!-- Presentacion del mensajes de error-->
-                        <div class="alert alert-success alert-dismissible">
+                        <div class="alert alert-danger alert-dismissible">
                             <button type="button" class="close" data-dismiss="alert">&times;</button>
                             <strong><i style="font-size:15px" class="fa">&#xf071;</i> Error !</strong> <?= $msg ?>
                         </div>
   <?php } ?>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Regístrese para iniciar su sesión</p>
+    <img class="img-responsive" src="<?= base_url("assets/img/Logo.png"); ?>" /><br>
+    <p class="login-box-msg"><b>Sistema de Información Validador de Rips</b></p>
 
     <form>
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Login" name="log" required="">
+        <input type="text" class="form-control" placeholder="Usuario" name="log" required="">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">

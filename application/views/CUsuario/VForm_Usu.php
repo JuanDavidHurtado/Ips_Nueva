@@ -1,12 +1,8 @@
  <section class="content">
 
-  <div class="box box-danger">
+  <div class="box box-primary">
     <div class="box-header with-border">
       <h3 class="box-title">Registro Usuario <small style="color: #C6462B;">(campo requerido *)</small></h3>
-
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-      </div>
     </div>
 
     <?php echo form_open_multipart('CUsuario/guardar_usuario'); ?>
@@ -18,7 +14,7 @@
             <label>Nombres <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-laptop"></i>
+                 <i class="fa fa-user"></i> 
               </div>
               <input type="text" required="" name="nom" class="form-control" placeholder="Nombres">
             </div>
@@ -28,7 +24,7 @@
             <label>Teléfono <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-laptop"></i>
+                <i class="fa fa-fax"></i>
               </div>
               <input type="text" required="" name="tel" class="form-control" placeholder="Teléfono">
             </div>
@@ -41,7 +37,7 @@
             <label>Apellidos <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-laptop"></i>
+                <i class="fa fa-user"></i>
               </div>
               <input type="text" required="" name="ape" class="form-control" placeholder="Apellidos">
             </div>
@@ -52,7 +48,7 @@
             <label>Teléfono Fijo</label>
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-laptop"></i>
+                <i class="fa fa-fax"></i>
               </div>
               <input type="text" name="tel1" class="form-control" placeholder="Teléfono Fijo">
             </div>
@@ -65,7 +61,7 @@
             <label>Correo Eléctronico <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-laptop"></i>
+                <i class="fa fa-envelope"></i>
               </div>
               <input type="email" required="" name="cor" class="form-control" placeholder="Correo Eléctronico">
             </div>
@@ -77,7 +73,7 @@
             <label>Login <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-laptop"></i>
+                <i class="fa fa-user"></i>
               </div>
               <input type="text" required="" name="log" class="form-control" placeholder="Login">
             </div>
@@ -90,7 +86,7 @@
             <label>Dirección <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-laptop"></i>
+                <i class="fa fa-toggle-right"></i>
               </div>
               <input type="text" required="" name="dir" class="form-control" placeholder="Dirección">
             </div>
@@ -101,7 +97,7 @@
             <label>Contraseña <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-laptop"></i>
+                <i class="fa fa-unlock-alt"></i>
               </div>
               <input type="text" required="" name="pwd" class="form-control" placeholder="Contraseña">
             </div>
@@ -113,7 +109,7 @@
             <label>Rol <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-laptop"></i>
+                <i class="fa fa-users"></i>
               </div>
               <select class="form-control" required="" name="rol">
                                 <option value="">---Seleccione Opción---</option>
@@ -134,7 +130,7 @@
             <label>Estado <small style="color: #C6462B;">*</small></label>
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-laptop"></i>
+                <i class="fa fa-ellipsis-v"></i>
               </div>
              <select class="form-control" required="" name="est">
                                 <option value="">---Seleccione Opción---</option>
@@ -151,10 +147,10 @@
         </div>
         <div class="col-md-4">
           <div class="form-group">
-            <label>Empresa</label>
+            <label>Entidad</label>
             <div class="input-group">
               <div class="input-group-addon">
-                <i class="fa fa-laptop"></i>
+                <i class="fa fa-institution"></i>
               </div>
              <select class="form-control" name="emp">
                                 <option value="">---Seleccione Opción---</option>
@@ -170,23 +166,14 @@
           <!-- /.form-group -->
         </div>
 
-        <div class="col-md-12">
-
-          <button type="submit" name="submit" value="Agregar" class="btn btn-block btn-social btn-bitbucket" >
-          
-            <i class="fa fa-bitbucket"></i> Guardar
-          </button>
-
-        </div>
-
         <!-- /.col -->
       </div>
       <!-- /.row -->
     </div>
     <!-- /.box-body -->
     <div class="box-footer">
-      Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-      the plugin.
+       <button type="submit" name="submit" value="Agregar" class="btn btn-block btn-social btn-instagram" ><i class="fa fa-check"></i> Guardar</button>
+      
     </div>
   </div>
 </section>

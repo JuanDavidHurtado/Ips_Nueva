@@ -1,12 +1,8 @@
  <section class="content">
 
-  <div class="box box-danger">
+  <div class="box box-primary">
     <div class="box-header with-border">
       <h3 class="box-title">Actualizar Mis Datos</h3>
-
-      <div class="box-tools pull-right">
-        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-      </div>
     </div>
 
     <?php echo form_open_multipart('CPerfil/actualizar'); ?>
@@ -19,7 +15,7 @@
               <label>Nombres:</label>
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa fa-user"></i>
                 </div>
                 <input type="text" name="nom" value="<?= $u->usuNombre; ?>" class="form-control"/>
               </div>
@@ -29,7 +25,7 @@
               <label>Teléfono</label>
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa fa-fax"></i>
                 </div>
                 <input type="text" value="<?= $u->usuTelefono; ?>" name="tel" class="form-control" >
               </div>
@@ -42,7 +38,7 @@
               <label>Apellidos:</label>
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa fa-user"></i>
                 </div>
                 <input type="text" name="ape" class="form-control" value="<?= $u->usuApellido; ?>">
               </div>
@@ -53,7 +49,7 @@
               <label>Teléfono Fijo:</label>
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa fa-fax"></i>
                 </div>
                 <input type="text" name="tel1" class="form-control" value="<?= $u->usuTelefono1; ?>">
               </div>
@@ -66,7 +62,7 @@
               <label>Correo Eléctronico:</label>
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa fa-envelope"></i>
                 </div>
                 <input type="email" name="cor" class="form-control" value="<?= $u->usuCorreo; ?>">
               </div>
@@ -78,9 +74,9 @@
               <label>Login:</label>
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa fa-user"></i>
                 </div>
-                <input type="text" name="nit" class="form-control" value="<?= $u->usuLogin; ?>">
+                <input type="text" name="log" class="form-control" value="<?= $u->usuLogin; ?>">
               </div>
             </div>
             <!-- /.form-group -->
@@ -91,7 +87,7 @@
               <label>Dirección:</label>
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa  fa-dot-circle-o"></i>
                 </div>
                 <input type="text" value="<?= $u->usuDireccion; ?>" name="dir" class="form-control">
               </div>
@@ -102,22 +98,13 @@
               <label>Contraseña:</label>
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa fa-unlock-alt"></i>
                 </div>
                 <input type="text" value="<?= $u->usuClave; ?>" name="pwd" class="form-control">
               </div>
             </div>
             <!-- /.form-group -->
           </div>
-
-        <div class="col-md-12">
-
-          <button type="submit" name="submit" value="Agregar" class="btn btn-block btn-social btn-bitbucket" >
-
-            <i class="fa fa-bitbucket"></i> Actualizar
-          </button>
-
-        </div>
 
       <?php } ?>
 
@@ -127,8 +114,7 @@
   </div>
   <!-- /.box-body -->
   <div class="box-footer">
-    Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-    the plugin.
+   <button type="submit" name="submit" class="btn btn-block btn-social btn-bitbucket" ><i class="fa fa-check"></i> Actualizar</button>
   </div>
 </div>
 </section>

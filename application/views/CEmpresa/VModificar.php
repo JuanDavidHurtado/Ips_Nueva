@@ -1,8 +1,8 @@
  <section class="content">
 
-  <div class="box box-danger">
+  <div class="box box-primary">
     <div class="box-header with-border">
-      <h3 class="box-title">Actualizar Empresa</h3>
+      <h3 class="box-title">Actualizar Entidad</h3>
 
       <div class="box-tools pull-right">
         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -20,7 +20,7 @@
               <label>Nombres:</label>
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa fa-institution"></i>
                 </div>
                 <input type="text" name="nom" value="<?= $e->empNombre; ?>" class="form-control"/>
               </div>
@@ -30,7 +30,7 @@
               <label>Correo Eléctronico</label>
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa fa-envelope"></i>
                 </div>
                 <input type="text" value="<?= $e->empCorreo; ?>" name="cor" class="form-control" >
               </div>
@@ -43,7 +43,7 @@
               <label>Nit:</label>
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa fa-pencil-square-o"></i>
                 </div>
                 <input type="text" name="nit" class="form-control" value="<?= $e->empNit; ?>">
               </div>
@@ -54,7 +54,7 @@
               <label>Teléfono:</label>
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa fa-fax"></i>
                 </div>
                 <input type="text" name="tel" class="form-control" value="<?= $e->empTelefono; ?>">
               </div>
@@ -67,7 +67,7 @@
               <label>Estado:</label>
               <div class="input-group">
                 <div class="input-group-addon">
-                  <i class="fa fa-laptop"></i>
+                  <i class="fa fa-ellipsis-v"></i>
                 </div>
                 <select class="form-control" name="est">
                   <?php if ($e->empEstado == "Activo"){ ?>
@@ -87,27 +87,22 @@
               </div>
             </div>
 
-
-            <div class="col-md-12">
-
-              <button type="submit" name="submit" value="Agregar" class="btn btn-block btn-social btn-bitbucket" >
-
-                <i class="fa fa-bitbucket"></i> Actualizar
-              </button>
-
-            </div>
-
           <?php } ?>
 
           <!-- /.col -->
         </div>
         <!-- /.row -->
       </div>
-      <!-- /.box-body -->
-      <div class="box-footer">
-        Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-        the plugin.
-      </div>
+       <div class="box-footer">
+
+             <div class="form-group col-md-6">
+               <button type="submit" name="submit" class="btn btn-block btn-social btn-instagram" ><i class="fa fa-check"></i> Actualizar</button>
+            </div>
+
+            <div class="form-group col-md-6">
+                <a href="<?= base_url("index.php/CEmpresa/listar_emp") ?>" class="btn btn-block btn-social btn-google"><i class="fa fa-mail-reply"></i> Regresar</a>
+            </div>
+  </div>
     </div>
   </section>
 

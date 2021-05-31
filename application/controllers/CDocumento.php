@@ -38,7 +38,7 @@
 
 
             if($tipo == 'add') { //Si fue add correcto
-                $data['tipmsg'] = 'success';  //Tipo de mensaje error, warning o success
+                $data['tipmsg'] = 'info';  //Tipo de mensaje error, warning o success
                 $data['msg'] = '<strong><span style="color:black" class="glyphicon">&#xe013;</span> Ok! </strong>Documento se añadido correctamente.'; //Mensaje a enviar 
             }elseif($tipo == 'ct_nombre_arc') {
 

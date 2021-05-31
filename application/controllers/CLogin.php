@@ -35,8 +35,7 @@ class CLogin extends CI_Controller {
     }
 
         
-        public function login()
-    {
+    public function login(){
 
             $login = $this->input->post('log');
             $pwd = $this->input->post('pwd');
