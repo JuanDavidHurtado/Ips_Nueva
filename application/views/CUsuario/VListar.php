@@ -46,7 +46,16 @@
                       <?= $u->rolNombre; ?>
                     </td>
                     <td>
-                      <?= $u->estNombre; ?>
+                      <?php if ($u->estNombre == 'Activo'):
+
+                        echo "<p style='background:#5DB4E7;'>$u->estNombre<p>"; 
+                        
+                       else:
+
+                        echo "<p style='background:#E8354E;'>$u->estNombre<p>"; 
+                        
+                       endif ?>
+                     
                     </td>
                     <td>
 
@@ -56,7 +65,7 @@
 
                      }else{
 
-                      echo "No pertenece a una empresa"; 
+                      echo "<p style='background:#5DB4E7;'>No pertenece a una empresa<p>"; 
 
                     }
                     ?>
@@ -64,9 +73,13 @@
                   <td>
                     <a data-toggle="tooltip" title="Actualizar Usuario" href="<?= base_url("index.php/CUsuario/modRecuperar/$u->idUsuario") ?>" class="btn btn-social btn-instagram"><i class="fa fa-edit"></i> Actualizar</a>
                   </td>
+                  <?php if ($u->estNombre == 'Activo'): ?>
+
                   <td>
-                    <a data-toggle="tooltip" title="Eliminar Usuario" href="<?= base_url("index.php/CUsuario/eliminar/$u->idUsuario") ?>" class="btn btn-social btn-google"><i class="fa fa-trash-o"></i> Eliminar</a> 
+                       <a data-toggle="tooltip" title="Eliminar Usuario" href="<?= base_url("index.php/CUsuario/eliminar/$u->idUsuario") ?>" class="btn btn-social btn-google"><i class="fa fa-trash-o"></i> Eliminar</a> 
+                      
                   </td>
+                  <?php endif ?>
 
                   <?php
                 }

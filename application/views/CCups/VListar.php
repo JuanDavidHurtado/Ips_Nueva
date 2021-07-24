@@ -32,8 +32,17 @@
                     <td>
                       <?= $c->cupDescripcion; ?>
                     </td>
-                    <td>
-                      <?= $c->cupEstado; ?>
+                     <td>
+                      <?php if ($c->cupEstado == 'Activo'):
+
+                        echo "<p style='background:#5DB4E7;'>$c->cupEstado<p>"; 
+                        
+                       else:
+
+                        echo "<p style='background:#E8354E;'>$c->cupEstado<p>"; 
+                        
+                       endif ?>
+                     
                     </td>
                     <td>
                        <a data-toggle="tooltip" title="Actualizar Cups" href="<?= base_url("index.php/CCups/modRecuperar/$c->idCups") ?>" class="btn btn-social btn-instagram"><i class="fa fa-edit"></i> Actualizar</a>

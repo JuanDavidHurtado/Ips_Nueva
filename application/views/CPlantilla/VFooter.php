@@ -54,7 +54,7 @@
 <!-- AdminLTE for demo purposes ----------------------->
 <script src="<?= base_url("assets/dist/js/demo.js") ?>"></script>
 
-<script src="<?= base_url("assets/datatables.net/js/jquery.dataTables.min.js") ?>"></script>
+<!--<script src="<?= base_url("assets/datatables.net/js/jquery.dataTables.min.js") ?>"></script>
 <script src="<?= base_url("assets/datatables.net-bs/js/dataTables.bootstrap.min.js") ?>"></script>
 
 
@@ -72,4 +72,4 @@
   })
 </script>
 </body>
-</html>
+</html>-->

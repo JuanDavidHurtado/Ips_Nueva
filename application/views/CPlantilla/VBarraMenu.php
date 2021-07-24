@@ -77,6 +77,14 @@ if (!$this->session->userdata('login')) {
     <ul class="sidebar-menu" data-widget="tree">
       <li style="color:white" class="header">NAVEGACIÓN PRINCIPAL</li>
       <li><a href="<?= site_url('CHome') ?>" style="color:white"><i class="fa fa-dashboard"></i> <span>Panel de Control</span></a></li>
+
+       <?php
+         if ($this->session->userdata('rol_user') == 1 || $this->session->userdata('rol_user') == 3) {?>
+
+      <li><a style="color:white" href="<?= site_url('CRecibida') ?>"><i class="fa fa-fw fa-files-o"></i> <span>Revisiòn Documentos</span></a></li>
+
+      <?php } ?>
+
       <?php if ($this->session->userdata('rol_user') == 1) { //Menu para Administrador (Si es 2 o 3 excluyo opcion usuario) ?>
         <li class="treeview">
           <a style="color:white">
@@ -130,7 +138,7 @@ if (!$this->session->userdata('login')) {
 
         <?php if ($this->session->userdata('rol_user') == 1 || $this->session->userdata('rol_user') == 2 ||  $this->session->userdata('rol_user') == 3) { ?>
 
-          <li><a href=""style="color:gray"><i class="fa fa-circle-o text-red"></i> Listar Documentos</a></li>
+          <li><a href="<?= site_url('CDocumento/lista_documento') ?>"style="color:gray"><i class="fa fa-circle-o text-red"></i> Listar Documentos</a></li>
         <?php } ?>
       </ul>
     </li>

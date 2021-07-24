@@ -11,7 +11,7 @@
         <?php echo form_open_multipart('CDocumento/add_doc'); ?>
         <div class="box-body" enctype="multipart/form-data">
 
-          <div class="col-md-12">
+          <div class="col-md-5">
             <div class="form-group">
               <label>Documento:</label>
               <div class="input-group">

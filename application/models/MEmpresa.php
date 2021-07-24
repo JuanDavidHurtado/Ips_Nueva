@@ -28,6 +28,17 @@ class MEmpresa extends CI_Model {
         //Devolvemos el resultado de la consulta
         return $consulta->result();
     }
+    public function ver_id_usuario($id_user) {
+
+         $consulta = $this->db->query("SELECT *
+
+          FROM usuario AS u
+          INNER JOIN empresa AS e ON e.idEmpresa = u.empresa_idEmpresa
+          WHERE u.idUsuario = $id_user");
+
+        //Devolvemos el resultado de la consulta
+        return $consulta->result();
+    }
 
 
 

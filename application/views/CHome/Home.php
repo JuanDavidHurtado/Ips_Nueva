@@ -99,7 +99,7 @@
             <div class="icon">
               <i class="fa fa-files-o"></i>
             </div>
-            <a href="" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?= site_url('CDocumento/lista_documento') ?>" class="small-box-footer">Más información <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
         <?php } ?>
