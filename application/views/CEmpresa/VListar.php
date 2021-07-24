@@ -37,8 +37,18 @@
                       <?= $e->empTelefono; ?>
                     </td>
                     <td>
-                      <?= $e->empEstado; ?>
+                      <?php if ($e->empEstado == 'Activo'):
+
+                        echo "<p style='background:#5DB4E7;'>$e->empEstado<p>"; 
+                        
+                       else:
+
+                        echo "<p style='background:#E8354E;'>$e->empEstado<p>"; 
+                        
+                       endif ?>
+                     
                     </td>
+                     
                     <td>
                     <a data-toggle="tooltip" title="Actualizar Empresa" href="<?= base_url("index.php/CEmpresa/modRecuperar/$e->idEmpresa") ?>" class="btn btn-social btn-instagram"><i class="fa fa-edit"></i> Actualizar</a>
                   </td>
