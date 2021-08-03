@@ -12,9 +12,9 @@
           <div id="tabla-info"class="table-responsive">
             <table id="example1" name="example1" class="table table-bordered">
               <thead>
-                <th>Código</th>
                 <th>Empresa</th>
-                <th>Descripción</th>
+                <th>Código</th>
+                <th>Nombre</th>
                 <th>Estado</th>
                 <th>Opción</th>
               </thead>
@@ -24,10 +24,10 @@
                   ?>
                   <tr>
                     <td>
-                      <?= $c->cupCodigo; ?>
+                      <?= $c->empNombre; ?>
                     </td>
                     <td>
-                      <?= $c->empNombre; ?>
+                      <?= $c->cupCodigo; ?>
                     </td>
                     <td>
                       <?= $c->cupDescripcion; ?>

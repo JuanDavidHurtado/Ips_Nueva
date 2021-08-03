@@ -97,7 +97,39 @@
         public function index_($tipo) {
 
 
-            if($tipo == 'ct_nombre_arc') {
+            
+            if($tipo == 'error_cups_ac') {
+
+                $data['tipmsg'] = 'danger';  //Tipo de mensaje error, warning o success
+                $data['msg'] = '<strong><span style="color:white" class="glyphicon glyphicon-alert"></span> Error! </strong> de cups archivo AC.'; //Mensaje a enviar 
+               
+            }if($tipo == 'error_cups_ap') {
+
+                $data['tipmsg'] = 'danger';  //Tipo de mensaje error, warning o success
+                $data['msg'] = '<strong><span style="color:white" class="glyphicon glyphicon-alert"></span> Error! </strong> de cups archivo AP.'; //Mensaje a enviar 
+               
+            }
+            elseif($tipo == 'error_cant_lineas_af') {
+
+                $data['tipmsg'] = 'danger';  //Tipo de mensaje error, warning o success
+                $data['msg'] = '<strong><span style="color:white" class="glyphicon glyphicon-alert"></span> Error! </strong>la cantidad de lineas del doc. AF no corresponden a la suma de los registros del doc. AC y AP.'; //Mensaje a enviar 
+               
+            }elseif($tipo == 'nomenclatura_inc') {
+
+                $data['tipmsg'] = 'danger';  //Tipo de mensaje error, warning o success
+                $data['msg'] = '<strong><span style="color:white" class="glyphicon glyphicon-alert"></span> Error! </strong>nomenclatura incorrecta, las dos primeras letras del nombre del archivo deben iniciar AC, AF, AP, CT o US.'; //Mensaje a enviar 
+               
+            }elseif($tipo == 'can_doc_no_admitida') {
+
+                $data['tipmsg'] = 'danger';  //Tipo de mensaje error, warning o success
+                $data['msg'] = '<strong><span style="color:white" class="glyphicon glyphicon-alert"></span> Error! </strong>cantidad de archivos no admitidos, debe oscilar entre 4 y como maximo 5 archivos.'; //Mensaje a enviar 
+               
+            }elseif($tipo == 'extension') {
+
+                $data['tipmsg'] = 'danger';  //Tipo de mensaje error, warning o success
+                $data['msg'] = '<strong><span style="color:white" class="glyphicon glyphicon-alert"></span> Error! </strong>los archivo no coinciden con los tipos de documentos que requiere el sistema por favor ingrese documentos con extension .txt (texto plano).'; //Mensaje a enviar 
+               
+            }elseif($tipo == 'ct_nombre_arc') {
 
                 $data['tipmsg'] = 'danger';  //Tipo de mensaje error, warning o success
                 $data['msg'] = '<strong><span style="color:white" class="glyphicon glyphicon-alert"></span> Error! </strong>Archivo CT incorrecto los nombres de los archivos (AF, US, AC y AP) no coinciden con los del documento CT.'; //Mensaje a enviar 
@@ -158,6 +190,46 @@
             $file_tmp = $_FILES['file_url']['tmp_name'];
             $file_type = $_FILES['file_url']['type'];
 
+
+            $cant_doc=count($file_name);
+            $caracteres = substr($file_name[0], 0, 2);
+            $caracter1 = substr($file_name[1], 0, 2);
+            $caracter2 = substr($file_name[2], 0, 2);
+            $caracter3 = substr($file_name[3], 0, 2);
+
+
+            if($cant_doc >=6 || $cant_doc <=3){
+
+                redirect(base_url("index.php/CDocumento/index_/can_doc_no_admitida"));
+                #code...
+            }elseif ($cant_doc == 5) {
+                $caracter4 = substr($file_name[4], 0, 2);
+
+                if ($caracteres != 'AC' || $caracter1 != 'AF' || $caracter2 != 'AP' || $caracter3 != 'CT' || $caracter4 != 'US') {
+
+                   redirect(base_url("index.php/CDocumento/index_/nomenclatura_inc"));
+                    
+                }
+            }
+            elseif ($cant_doc == 4 && $caracteres == 'AC') {
+
+                 if ($caracteres != 'AC' || $caracter1 != 'AF' || $caracter2 != 'CT' || $caracter3 != 'US') {
+
+                   redirect(base_url("index.php/CDocumento/index_/nomenclatura_inc"));
+                    
+                }
+                
+            }elseif ($cant_doc == 4 && $caracteres == 'AF') {
+
+                 if ($caracteres != 'AF' || $caracter1 != 'AP' || $caracter2 != 'CT' || $caracter3 != 'US') {
+
+                   redirect(base_url("index.php/CDocumento/index_/nomenclatura_inc"));
+                    
+                }
+                
+            }
+            
+
             $fpcero = fopen($file_tmp[0], 'r+b');
             $binariocero = fread($fpcero, filesize($file_tmp[0]));
             fclose($fpcero);
@@ -174,31 +246,116 @@
             $binariotres = fread($fptres, filesize($file_tmp[3]));
             fclose($fptres);
 
+            if ($cant_doc == 5) {
+
             $fpcuatro = fopen($file_tmp[4], 'r+b');
             $binariocuatro = fread($fpcuatro, filesize($file_tmp[4]));
             fclose($fpcuatro);
 
+            }
+
+            
+            if ($cant_doc == 5) {
+
+                if('txt' != pathinfo($file_name[0], PATHINFO_EXTENSION) || 'txt' != pathinfo($file_name[1], PATHINFO_EXTENSION) || 'txt' != pathinfo($file_name[2], PATHINFO_EXTENSION) || 'txt' != pathinfo($file_name[3], PATHINFO_EXTENSION)
+            || 'txt' != pathinfo($file_name[4], PATHINFO_EXTENSION)) //si alguna extension coincide con el del archivo comprobada en ese momento
+                {
+
+                    redirect(base_url("index.php/CDocumento/index_/extension"));//ct_nombre_arc
+               
+                }
+            }else {
+                
+                if('txt' != pathinfo($file_name[0], PATHINFO_EXTENSION) || 'txt' != pathinfo($file_name[1], PATHINFO_EXTENSION) || 'txt' != pathinfo($file_name[2], PATHINFO_EXTENSION) || 'txt' != pathinfo($file_name[3], PATHINFO_EXTENSION)) //si alguna extension coincide con el del archivo comprobada en ese momento
+                 {
+
+             redirect(base_url("index.php/CDocumento/index_/extension"));
+               
+                 }
+            } 
+
             //capturo el nombre de archivo
+
+            if ($cant_doc == 5) {
 
             $name =  pathinfo($file_name[0], PATHINFO_FILENAME);
             $name1 = pathinfo($file_name[1], PATHINFO_FILENAME);
             $name2 = pathinfo($file_name[2], PATHINFO_FILENAME);
             $name4 = pathinfo($file_name[4], PATHINFO_FILENAME);
 
-            //Capturo la cantidad de filas por archivo
-
             $linea =  count(file($file_tmp[0]));
             $linea1 = count(file($file_tmp[1]));
             $linea2 = count(file($file_tmp[2]));
             $linea4 = count(file($file_tmp[4]));
 
-            //creo el array de nombre de doc y nmeros de lineas 
+
 
             $nom_archivos = array($name, $name1, $name2, $name4);
 
             $cant_lineas = array($linea, $linea1, $linea2, $linea4);
 
+            $cant_ac_ap = $linea + $linea2;
             $filas_ct = fopen($file_tmp[3], 'r');
+            $valores3=explode(",",fgets($filas_ct));
+
+            //print_r($cant_ac_ap);
+            if ($valores3[3] != $cant_ac_ap) {
+
+                redirect(base_url("index.php/CDocumento/index_/error_cant_lineas_af"));
+            }
+
+           // echo "5";
+                
+            }elseif ($cant_doc == 4 && $caracteres == 'AC') {
+
+            $name =  pathinfo($file_name[0], PATHINFO_FILENAME);
+            $name1 = pathinfo($file_name[1], PATHINFO_FILENAME);
+            $name3 = pathinfo($file_name[3], PATHINFO_FILENAME);
+
+            $linea =  count(file($file_tmp[0]));
+            $linea1 = count(file($file_tmp[1]));
+            $linea3 = count(file($file_tmp[3]));
+
+            $nom_archivos = array($name, $name1, $name3);
+
+            $cant_lineas = array($linea, $linea1, $linea3);
+
+            $filas_ct = fopen($file_tmp[2], 'r');
+            $valores3=explode(",",fgets($filas_ct));
+
+            //print_r($cant_ac_ap);
+            if ($valores3[3] != $linea) {
+
+                redirect(base_url("index.php/CDocumento/index_/error_cant_lineas_af"));
+            }
+
+         //   echo "AC";
+                
+            }elseif ($cant_doc == 4 && $caracteres == 'AF') {
+             
+            $name =  pathinfo($file_name[0], PATHINFO_FILENAME);
+            $name1 = pathinfo($file_name[1], PATHINFO_FILENAME);
+            $name3 = pathinfo($file_name[3], PATHINFO_FILENAME);
+
+            $linea =  count(file($file_tmp[0]));
+            $linea1 = count(file($file_tmp[1]));
+            $linea3 = count(file($file_tmp[3]));
+
+            $nom_archivos = array($name, $name1, $name3);
+
+            $cant_lineas = array($linea, $linea1, $linea3);
+
+            $filas_ct = fopen($file_tmp[2], 'r');
+
+            $valores3=explode(",",fgets($filas_ct));
+
+            //print_r($cant_ac_ap);
+            if ($valores3[3] != $linea1) {
+
+                redirect(base_url("index.php/CDocumento/index_/error_cant_lineas_af"));
+            }
+
+            }
 
             while(!feof($filas_ct))
             {
@@ -234,6 +391,8 @@
             
             //$file_tmp[0]
 
+        if ($cant_doc == 5) {
+
            $documento = array(
                 'docac' => $binariocero,
                 'docaf' => $binariouno,
@@ -241,8 +400,29 @@
                 'docct' => $binariotres,
                 'docus' => $binariocuatro
             );
+
+       }elseif ($cant_doc == 4 && $caracteres == 'AC') {
+
+           $documento = array(
+                'docac' => $binariocero,
+                'docaf' => $binariouno,
+                'docct' => $binariodos,
+                'docus' => $binariotres
+            );
+
+       }elseif ($cant_doc == 4 && $caracteres == 'AF') {
+
+           $documento = array(
+                'docaf' => $binariocero,
+                'docap' => $binariouno,
+                'docct' => $binariodos,
+                'docus' => $binariotres
+            );
+       }
             //Procedo a guardar la informacion
             $id_doc = $this->MDocumento->guardar($documento);
+
+            if ($cant_doc == 5) {
 
             $filas= fopen($file_tmp[1], 'r');
             
@@ -250,6 +430,17 @@
             $num_lineas= count(file($file_tmp[1]));
 
             $filas_af= fopen($file_tmp[1], 'r');
+
+            }else{
+
+            $filas= fopen($file_tmp[0], 'r');
+            
+            $data  = explode(",",fgets($filas));
+            $num_lineas= count(file($file_tmp[0]));
+
+            $filas_af= fopen($file_tmp[0], 'r');
+
+            }
 
             $total=0;
             while (!feof($filas_af)) {
@@ -298,8 +489,23 @@
        // echo $linea;
 
 
+        if ($cant_doc == 5) {
+
         $file1 = new SplFileObject($file_tmp[1]);
-                $file1->setFlags(SplFileObject::READ_CSV);
+
+        }elseif($cant_doc == 4 && $caracteres == 'AC'){
+
+        $file1 = new SplFileObject($file_tmp[1]);
+
+        }elseif ($cant_doc == 4 && $caracteres == 'AF') {
+
+        $file1 = new SplFileObject($file_tmp[0]);
+            
+        }
+
+
+        $file1->setFlags(SplFileObject::READ_CSV);
+
 
         foreach ($file1 as $row) {
 
@@ -314,8 +520,8 @@
               
             if ($dato != $ct_posicon_zero || $dato == $var_vacia || $dato1 == $var_vacia
                 || $dato2 == $var_vacia || $dato2 != $var_NI || $var_long >= 17 || 
-                $dato4 == $var_vacia || $dato5 == $var_vacia || $dato5 >= $dato7 ||
-                $dato6 == $var_vacia || $dato6 >= $dato7 || $dato7 == $var_vacia
+                $dato4 == $var_vacia || $dato5 == $var_vacia || $dato5 > $dato7 ||
+                $dato6 == $var_vacia || $dato6 > $dato7 || $dato7 == $var_vacia
                 || $dato8 == $var_vacia || $dato9 == $var_vacia || $dato13 < 0
                 || $dato13 == $var_vacia || $dato14 == $var_vacia || $dato14 < 0 || 
                 $dato15 == $var_vacia || $dato15 < 0 || $dato16 == $var_vacia || $dato16 < 0
@@ -329,31 +535,63 @@
             }
           }
 
-        }
+        }    
 
         //Validación documento ac////////////////////////
 
-        $af_posicon_cinco = $array_doc_af[5];
 
-        $file = new SplFileObject($file_tmp[0]);
+        if ($cant_doc == 5 || $cant_doc == 4 && $caracteres == 'AC' ) {
+           // || $cant_doc == 4 && $caracteres == 'AC'
+
+
+        $file = new SplFileObject($file_tmp[0]);   
         $file->setFlags(SplFileObject::READ_CSV);
-
 
         foreach ($file as $row) {
          
-            list($dato, $dato1, $dato2, $dato3, $dato4, $dato5, $dato6, $dato7, 
+             list($dato, $dato1, $dato2, $dato3, $dato4, $dato5, $dato6, $dato7, 
                 $dato8, $dato9, $dato10, $dato11, $dato12, $dato13, $dato14, $dato15
                 , $dato16) = $row; 
+
+            // var_dump($row)."<br>";
+
+            // print_r($row)."<br>";
+
 
             $total = $dato14 - $dato15;
       
          for ($i=0; $i < $linea; $i++) { 
 
-            if ($dato == $var_vacia || $dato1 != $ct_posicon_zero || $dato2 == $var_vacia
-                || !($dato2 === 'CC' || $dato2 === 'CE' || $dato2 === 'CA' || $dato2 === 'RC' || $dato2 === 'TI' || $dato2 === 'AS' || $dato2 ==='MS')
-                || $dato3 == $var_vacia || $dato4 != $af_posicon_cinco || $dato7 == $var_vacia || $dato8 == $var_vacia || $dato9 == $var_vacia || $dato13 == $var_vacia || !($dato13 >=1 && $dato13 <=3) || $dato14 == $var_vacia || $dato14 < 0 || $dato15 == $var_vacia || $dato15 < 0
+             //echo $dato6."<br>";
+
+
+             $id_user = $this->session->userdata('id_user');
+             $consulta = $this->MEmpresa->ver_id_usuario($id_user);
+
+             $id_empresa = $consulta[0]->empresa_idEmpresa;
+
+           //  print_r($id_empresa[0]->empresa_idEmpresa);
+
+            $val_cups = $this->MDocumento->buscar_cups($dato6, $id_user, $id_empresa);
+
+             if ($val_cups == Array()) {
+                $this->MDocumento->eliminar_documento($id_doc);
+                $this->MDocumento->eli_doc_usu($id_doc);
+
+                redirect(base_url("index.php/CDocumento/index_/error_cups_ac"));
+             }
+            // print_r($val_cups);
+
+            if ($dato == $var_vacia
+                || $dato1 != $ct_posicon_zero || $dato2 == $var_vacia
+               || !($dato2 === 'CC' || $dato2 === 'CE' || $dato2 === 'PA' || $dato2 === 'RC' || $dato2 === 'TI' || $dato2 === 'AS' || $dato2 ==='MS')
+                || $dato3 == $var_vacia || $dato4 == $var_vacia 
+                || $dato7 == $var_vacia || $dato8 == $var_vacia || $dato9 == $var_vacia || $dato13 == $var_vacia || $dato13 < 1 || $dato13 > 3 || $dato14 == $var_vacia || $dato14 < 0 || $dato15 == $var_vacia || $dato15 < 0
               || $dato16 == $var_vacia || $dato16 < 0 || $dato16 != $total 
           ){
+
+            
+
 
                 $this->MDocumento->eliminar_documento($id_doc);
                 $this->MDocumento->eli_doc_usu($id_doc);
@@ -362,13 +600,17 @@
             }
            
            } 
+          }
         }
-
 
         //////////////Validacion Documento ap///////////////
 
-        $file2 = new SplFileObject($file_tmp[2]);
-        $file2->setFlags(SplFileObject::READ_CSV);
+
+       if ($cant_doc == 5) {
+
+            $file2 = new SplFileObject($file_tmp[2]);
+
+             $file2->setFlags(SplFileObject::READ_CSV);
 
         foreach ($file2 as $row) {
          
@@ -378,9 +620,77 @@
             $val_num = is_numeric($dato3);
 
           for ($i=0; $i < $linea2; $i++) { 
+
+            //echo $dato6."<br>";
+
+
+             $id_user = $this->session->userdata('id_user');
+             $consulta = $this->MEmpresa->ver_id_usuario($id_user);
+
+             $id_empresa = $consulta[0]->empresa_idEmpresa;
+
+           //  print_r($id_empresa[0]->empresa_idEmpresa);
+
+             $val_cups = $this->MDocumento->buscar_cups($dato6, $id_user, $id_empresa);
+             if ($val_cups == Array()) {
+                $this->MDocumento->eliminar_documento($id_doc);
+                $this->MDocumento->eli_doc_usu($id_doc);
+
+                redirect(base_url("index.php/CDocumento/index_/error_cups_ap"));
+             }
+            // print_r($val_cups);
+
             if ($dato1 == $var_vacia || $dato1 != $ct_posicon_zero || $dato2 == $var_vacia
-                || !($dato2 === 'CC' || $dato2 === 'CE' || $dato2 === 'CA' || $dato2 === 'RC' || $dato2 === 'TI' || $dato2 === 'AS' || $dato2 ==='MS')
-                || $dato3 == $var_vacia || $val_num != 1 || $dato4 == $var_vacia || $dato6 == $var_vacia || $dato7 == $var_vacia || !($dato7 >=1 && $dato7 <=3) || $dato8 == $var_vacia || !($dato8 >=1 && $dato8 <=5) || $dato13 == $var_vacia || !($dato13 >=1 && $dato13 <=5) || $dato14 == $var_vacia || $dato14 < 0
+                || !($dato2 === 'CC' || $dato2 === 'CE' || $dato2 === 'PA' || $dato2 === 'RC' || $dato2 === 'TI' || $dato2 === 'AS' || $dato2 ==='MS')
+                || $dato3 == $var_vacia || $val_num != 1 || $dato4 == $var_vacia || 
+                
+                $dato6 == $var_vacia || $dato7 == $var_vacia || !($dato7 >=1 && $dato7 <=3) || $dato8 == $var_vacia || !($dato8 >=1 && $dato8 <=5) || $dato13 == $var_vacia || !($dato13 >=1 && $dato13 <=5) || $dato14 == $var_vacia || $dato14 < 0
+            ){
+
+                $this->MDocumento->eliminar_documento($id_doc);
+                $this->MDocumento->eli_doc_usu($id_doc);
+                
+                //redirect(base_url("index.php/CDocumento/index_/ap_incorrecto"));
+            }
+          }
+        }
+
+        }elseif ($cant_doc == 4 && $caracteres == 'AF') {
+
+            $file2 = new SplFileObject($file_tmp[1]);
+            $file2->setFlags(SplFileObject::READ_CSV);
+
+        foreach ($file2 as $row) {
+         
+            list($dato, $dato1, $dato2, $dato3, $dato4, $dato5, $dato6, $dato7, $dato8
+                , $dato9, $dato10, $dato11, $dato12, $dato13, $dato14) = $row; 
+
+            $val_num = is_numeric($dato3);
+
+          for ($i=0; $i < $linea1; $i++) { 
+            //echo $dato6."<br>";
+
+
+             $id_user = $this->session->userdata('id_user');
+             $consulta = $this->MEmpresa->ver_id_usuario($id_user);
+
+             $id_empresa = $consulta[0]->empresa_idEmpresa;
+
+           //  print_r($id_empresa[0]->empresa_idEmpresa);
+
+             $val_cups = $this->MDocumento->buscar_cups($dato6, $id_user, $id_empresa);
+              if ($val_cups == Array()) {
+                $this->MDocumento->eliminar_documento($id_doc);
+                $this->MDocumento->eli_doc_usu($id_doc);
+
+                redirect(base_url("index.php/CDocumento/index_/error_cups_ap"));
+             }
+            // print_r($val_cups);
+
+            if ($dato1 == $var_vacia || $dato1 != $ct_posicon_zero || $dato2 == $var_vacia
+                || !($dato2 === 'CC' || $dato2 === 'CE' || $dato2 === 'PA' || $dato2 === 'RC' || $dato2 === 'TI' || $dato2 === 'AS' || $dato2 ==='MS')
+                || $dato3 == $var_vacia || $val_num != 1 || $dato4 == $var_vacia 
+                || $dato6 == $var_vacia || $dato7 == $var_vacia || !($dato7 >=1 && $dato7 <=3) || $dato8 == $var_vacia || !($dato8 >=1 && $dato8 <=5) || $dato13 == $var_vacia || !($dato13 >=1 && $dato13 <=5) || $dato14 == $var_vacia || $dato14 < 0
             ){
 
                 $this->MDocumento->eliminar_documento($id_doc);
@@ -390,13 +700,24 @@
             }
           }
         }
-
+        }
 
         //////////////Validacion Documento us///////////////
 
         $af_posicon_ocho = $array_doc_af[8];
 
+        if ($cant_doc == 5) {
+
+        $lin_change = count(file($file_tmp[4]));
         $file4 = new SplFileObject($file_tmp[4]);
+
+        }elseif($cant_doc == 4 && $caracteres == 'AC' || $cant_doc == 4 && $caracteres == 'AF'){
+
+        $lin_change = count(file($file_tmp[3]));
+        $file4 = new SplFileObject($file_tmp[3]);
+
+        }    
+
         $file4->setFlags(SplFileObject::READ_CSV);
 
 
@@ -410,8 +731,8 @@
             $val_num2 = is_numeric($dato11);
             $val_num3 = is_numeric($dato12);
  
-          for ($i=0; $i < $linea4; $i++) { 
-            if (!($dato === 'CC' || $dato === 'CE' || $dato === 'CA' || $dato === 'RC' || $dato === 'TI' || $dato === 'AS' || $dato ==='MS') ||
+          for ($i=0; $i < $lin_change; $i++) { 
+            if (!($dato === 'CC' || $dato === 'CE' || $dato === 'PA' || $dato === 'RC' || $dato === 'TI' || $dato === 'AS' || $dato ==='MS') ||
                 $dato == $var_vacia 
                 || $dato1 == $var_vacia || $val_num != 1 || $dato2 == $var_vacia || $dato2 != $af_posicon_ocho || $dato3 == $var_vacia ||
                 !($dato3 >=1 && $dato3 <=8) || $dato4 == $var_vacia || $dato6 == $var_vacia
@@ -430,7 +751,7 @@
       redirect(base_url("index.php/CDocumento/index_/doc_correcto"));
 
 
-    }    
+    } 
   
 }
 

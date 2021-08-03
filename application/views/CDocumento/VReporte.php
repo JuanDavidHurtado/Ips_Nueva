@@ -19,6 +19,7 @@
                 <th>Fecha Validaciòn</th>
                 <th>Fecha Periodo</th>
                 <th>Valor</th>
+                <th>Estado</th>
             <tr>
         </thead>
         <tbody>
@@ -47,6 +48,19 @@
                     </td>
                     <td>
                       $ <?= $r->usu_doc_Valor; ?>
+                    </td>
+                    <td> 
+                      <?php
+                       if ($r->usu_doc_Revisado == 'SI'){ 
+
+                         echo "<p style='background:#5DB4E7;'>ACEPTADO<p>";
+                        
+                         }else{ 
+
+                           echo "<p style='background:#E8354E;'>$r->usu_doc_Revisado<p>";
+                                             
+                          } ?>
+                          
                     </td>
 
                      </tr>
