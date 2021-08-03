@@ -111,7 +111,9 @@ class MDocumento extends CI_Model {
             SELECT * FROM usuario_documento AS ud
             INNER JOIN usuario AS u ON u.idUsuario = ud.usuario_idUsuario
             INNER JOIN empresa AS e ON e.idEmpresa = u.empresa_idEmpresa
-            WHERE  ud.usu_doc_Revisado = 'SI' AND
+            WHERE  ud.usu_doc_Revisado = 'SI' OR
+            ud.usu_doc_Revisado = 'RECHAZADO' 
+            AND
             ud.usu_doc_Fecha BETWEEN '".$fecha."'
             AND 
             '".$fecha1."'
@@ -121,7 +123,22 @@ class MDocumento extends CI_Model {
         return $consulta->result();
 
 
-        }
+    }
+
+     public function buscar_cups($dato6,$id_user,$id_empresa){
+        $consulta = $this->db->query("
+            SELECT * FROM empresa AS e
+            INNER JOIN cups AS c ON c.empresa_idEmpresa = e.idEmpresa
+            INNER JOIN usuario AS u ON u.empresa_idEmpresa = e.idEmpresa
+
+            WHERE c.cupCodigo = '".$dato6."'
+            AND u.idUsuario =  '".$id_user."'
+            AND e.idEmpresa = '".$id_empresa."'
+             ");
+
+        return $consulta->result();
+    }
+    
 }
 
 ?>
